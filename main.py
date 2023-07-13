@@ -112,7 +112,7 @@ def register_users(file) -> None:
     with open(file=file, mode='r', encoding='utf-8') as csv_file:
         rows = csv.reader(csv_file, delimiter=';')
         next(rows)
-        for i, row in enumerate(rows, start=1):
+        for i, row in enumerate(rows, start=2):
             if all(data := row[:6]):
                 try:
                     user = User(*data)
@@ -133,7 +133,7 @@ def main() -> None:
 if __name__ == '__main__':
     try:
         main()
-    except IndexError as exc:
+    except Exception as exc:
         logging.error(msg=exc)
     else:
         logging.info(msg=f'Successfully registered {User.success_count} users')
