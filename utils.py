@@ -48,6 +48,8 @@ def register_user(user_row: list[str | int | None], row_num: int):
             User(*data).register(endpoint=os.getenv('ENDPOINT'))
             time.sleep(3)
         except KeyError:
-            logging.error(f'Specialty from {row_num} row isn\'t known')
+            # header ignore
+            if row_num != 1:
+                logging.error(f'Specialty from {row_num} row isn\'t known')
     else:
         logging.warning(f'Empty field at {row_num} row')

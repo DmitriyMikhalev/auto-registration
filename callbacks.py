@@ -15,10 +15,11 @@ def file_callback(update: Update, context: CallbackContext) -> None:
     file: File = context.bot.get_file(update.message.document.file_id)
     file: bytes = file.download_as_bytearray()
 
-    for i, row in enumerate(get_rows(file=file), start=2):
+    for i, row in enumerate(get_rows(file=file), start=1):
         register_user(user_row=row, row_num=i)
 
     msg = get_result_message(klass=User)
+    User.clear()
 
     for chat_id in USER_IDS:
         context.bot.send_document(

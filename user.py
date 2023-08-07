@@ -3,13 +3,13 @@ import logging
 import requests
 
 code_specialty = {
-    'стоматолог-терапевт': 10,
+    'терапевт': 10,
     'детский стоматолог': 14,
     'гигиенист': 9,
     'пародонтолог': 11,
     'хирург': 13,
-    'стоматолог-ортопед': 8,
-    'стоматолог-ортодонт': 12,
+    'ортопед': 8,
+    'ортодонт': 12,
     'ассистент': 16,
     'другое': 18
 }
@@ -39,6 +39,12 @@ class User:
 
     def __repr__(self) -> str:
         return f'{self.get_full_name()}'
+
+    @classmethod
+    def clear(cls):
+        cls.failed = []
+        cls.registered = []
+        cls.registered_before = []
 
     def to_dict(self) -> dict[str, str]:
         return self.__dict__
